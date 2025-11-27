@@ -766,6 +766,12 @@ class WebGPUTextureUtils {
 	 */
 	_copyImageToTexture( image, textureGPU, textureDescriptorGPU, originDepth, flipY, premultiplyAlpha, mipLevel = 0 ) {
 
+		if ( image.videoWidth !== undefined && ( image.videoWidth === 0 || image.videoHeight === 0 ) ) {
+
+			return;
+
+		}
+
 		const device = this.backend.device;
 
 		const width = ( mipLevel > 0 ) ? image.width : textureDescriptorGPU.size.width;
